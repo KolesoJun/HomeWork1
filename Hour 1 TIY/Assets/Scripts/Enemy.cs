@@ -15,20 +15,6 @@ public class Enemy : MonoBehaviour, IPointerClickHandler
     private int _damage;
     private int _indexPoint;
     
-    public void Death()
-    {
-        _animator.SetTrigger("Death");
-        Destroy(gameObject, _delayToDestoy);
-    }
-
-    public void TryTarget(Transform target)
-    {
-        if (_pathPoints.Contains(target) == false)
-        {
-            _pathPoints.Add(target);
-        }
-    }
-
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -53,6 +39,17 @@ public class Enemy : MonoBehaviour, IPointerClickHandler
 
         if (collision.gameObject.tag == "PathEnemy" && collision.transform == _target)
             _target = null;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Death();
+    }
+
+    private void Death()
+    {
+        _animator.SetTrigger("Death");
+        Destroy(gameObject, _delayToDestoy);
     }
 
     private void Patrol()
@@ -83,10 +80,5 @@ public class Enemy : MonoBehaviour, IPointerClickHandler
             if (_indexPoint >= _pathPoints.Count)
                 _indexPoint = 0;
         }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Death();
     }
 }
