@@ -13,8 +13,6 @@ public class Scaner : MonoBehaviour
     public Transform Target { get; private set; }
     public Transform Player { get; private set; }
 
-    
-
     private void Update()
     {
         if (_canSwap == false)
