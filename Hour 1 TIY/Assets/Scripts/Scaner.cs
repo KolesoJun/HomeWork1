@@ -7,8 +7,6 @@ public class Scaner : MonoBehaviour
     [SerializeField] private float _sizeMax;
     [SerializeField] private float _growth;
 
-    private bool _canSwap;
-
     public Transform Target { get; private set; }
     public Transform Player { get; private set; }
 
