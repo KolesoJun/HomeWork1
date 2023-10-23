@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1704767397889138342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704767397889138344}
+  - component: {fileID: 1704767397889138343}
+  m_Layer: 0
+  m_Name: PlatformController
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1704767397889138344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704767397889138342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.37958217, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1704767397889138343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704767397889138342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8781eedb065fc43ad88fe23e084c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabsCube:
+  - {fileID: 6198181989020559557, guid: 68d1f4df4b469d84aabe30c4f70d551c, type: 3}
+  - {fileID: 6036385879970406920, guid: f9c71ab308339684b98319d83d7b90b8, type: 3}
+  - {fileID: 7629342852641071724, guid: e0484424fdeaccd4caf5449a4a751bed, type: 3}
+  - {fileID: 2852277646722372968, guid: a91cb4b30f0a2594eb2a2eb2153dc57f, type: 3}
+  - {fileID: 5571536239397888301, guid: 828a39cefde8e3b49903e9a2f2d832b3, type: 3}
+  - {fileID: 3635460009297695155, guid: 89bd07e3d62bb7f46abddd391efce40d, type: 3}
+  - {fileID: 1914370787717652401, guid: 7910b5e36d3625e46a117462eac06935, type: 3}
+  - {fileID: 3250469682529464846, guid: fe225d234a89afc439ef0f8cc65f1707, type: 3}
+  - {fileID: 2244837602615093636, guid: a1ed30fb0b02f594b9cd419074433a1b, type: 3}
+  - {fileID: 7916327070749243172, guid: 70892535205fc5247859b34d5ad3dc85, type: 3}
+  - {fileID: 8742089554641278918, guid: b7671f2449c4c034a96c2586310e4ffc, type: 3}
+  - {fileID: 7592189812625728455, guid: 66bfd87f70978cf44937bb0e699c5476, type: 3}
+  - {fileID: 2620433180226408864, guid: 2728dbd5749e50a4d8936f702b0bdf29, type: 3}
+  - {fileID: 1307507170647467508, guid: a40798cbdd6f0bc4793f82455ecd803a, type: 3}
+  - {fileID: 1329994318400562363, guid: 389bb4af05a40f44bb4d9ec4aa0ec9b8, type: 3}
+  - {fileID: 7038232863498948302, guid: c1a5eeadd5dd5ad41a36e5d7a540873e, type: 3}
+  - {fileID: 7144075575235787951, guid: 966cec8960233984196f43c9a69f4e7a, type: 3}
+  - {fileID: 4951399113868276742, guid: bb7afb5c21782804281c0abeb8cac8e1, type: 3}
+  - {fileID: 330925953967293277, guid: 43c8b54c7e439924cba8b8c93919e434, type: 3}
+  - {fileID: 4015511755880205150, guid: 033aed2ae12f8f2429d3782cb3107120, type: 3}
+  - {fileID: 926271948571888563, guid: 62efd76654f461448922af700a607fc4, type: 3}
+  - {fileID: 1221616509713545076, guid: 29e3c91310addde40b8e1bd8bcb00775, type: 3}
+  - {fileID: 2614877192684601586, guid: 41ca21191d5f3b348953ce6c354803c6, type: 3}
+  - {fileID: 5529436354810757140, guid: 6cb091e5b37c3054da4cc3c0bc61132b, type: 3}
+  _prefabsSpawnOnCubeMoney:
+  - {fileID: 8757069402936713898, guid: 6039ff09c0ca1e349bb2e8ec55c5dea1, type: 3}
+  _prefabsSpawnOnCubeEnemy:
+  - {fileID: 4310884439010131549, guid: 09c5cd063d8f0cf4ea81024a6bc1ac52, type: 3}
+  - {fileID: 8304421632833682501, guid: 9e258b3fdd3e851478cbbd5df9890f47, type: 3}
+  _prefabsSpawnOnCubeBuff:
+  - {fileID: 8145103257135707726, guid: 8c2d77533ed385f4aa92cdb3ed58feff, type: 3}
+  _prefabDestroyAgent: {fileID: 14410756365927011, guid: 809f2a08a853b7b4b9cae3bf58b365b4, type: 3}
+  _prefabPatrolAgent: {fileID: 5418491906677269247, guid: 85d1d10a6148d8745978386a973991da, type: 3}
