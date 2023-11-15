@@ -17,6 +17,6 @@ public class HealthBar : MonoBehaviour
 
     public void Update()
     {
-        _slider.value = _player.HealthCurrent / _percent;
+            _slider.value = _player.HealthCurrent / _percent;
     }
 }

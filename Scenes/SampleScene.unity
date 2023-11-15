@@ -786,7 +786,6 @@ GameObject:
   - component: {fileID: 795781429}
   - component: {fileID: 795781428}
   - component: {fileID: 795781427}
-  - component: {fileID: 795781430}
   m_Layer: 5
   m_Name: Button_Damager
   m_TagString: Untagged
@@ -859,15 +858,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795781430}
-        m_TargetAssemblyTypeName: Button, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
+      - m_Target: {fileID: 1038932694}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Damage
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -909,21 +908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795781425}
   m_CullTransparentMesh: 1
---- !u!114 &795781430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795781425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c134e9063dfeb304e9ea91be9c88adff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _value: 10
-  _isDamage: 1
-  _text: {fileID: 634920761}
 --- !u!1 &870530630
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +920,6 @@ GameObject:
   - component: {fileID: 870530634}
   - component: {fileID: 870530633}
   - component: {fileID: 870530632}
-  - component: {fileID: 870530635}
   m_Layer: 5
   m_Name: Button_Hiller
   m_TagString: Untagged
@@ -1009,15 +992,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 870530635}
-        m_TargetAssemblyTypeName: Button, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
+      - m_Target: {fileID: 1038932694}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Hill
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1059,21 +1042,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870530630}
   m_CullTransparentMesh: 1
---- !u!114 &870530635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870530630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c134e9063dfeb304e9ea91be9c88adff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _value: 10
-  _isDamage: 0
-  _text: {fileID: 121579779}
 --- !u!1 &1038932692
 GameObject:
   m_ObjectHideFlags: 0

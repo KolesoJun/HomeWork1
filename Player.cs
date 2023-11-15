@@ -8,8 +8,9 @@ public class Player : MonoBehaviour
 
     public float HealthCurrent { get; private set; }
 
-    private float _speedChange = 8f;
+    private float _speedChange = 5f;
     private float _healthMax;
+    private bool _canWork = true;
 
     private void Start()
     {
@@ -17,19 +18,54 @@ public class Player : MonoBehaviour
         _healthMax = _health;
     }
 
-    private void Update()
+    private IEnumerator ChangeHealth()
     {
-        HealthCurrent = Mathf.MoveTowards(HealthCurrent, _health, _speedChange*Time.deltaTime);
+        if (_canWork)
+        {
+            _canWork = false;
+            CheckExcessHealth();
+            CheckDeath();
 
-        if (HealthCurrent <= 0)
-            Destroy(gameObject);
+            while (_health != HealthCurrent)
+            {
+                HealthCurrent = Mathf.MoveTowards(HealthCurrent, _health, _speedChange * Time.deltaTime);
+                yield return new WaitForFixedUpdate();
+            }
+
+            StopCoroutine(ChangeHealth());
+        }
+
+        _canWork = true;
+        yield return new WaitForFixedUpdate();
     }
 
-    public void ChangeHealth(float value)
+    private void CheckExcessHealth()
     {
-        if (_health + value >= _healthMax)
+        if (_health >= _healthMax)
+        {
             _health = _healthMax;
-        else
-            _health += value;
+            StopCoroutine(ChangeHealth());
+        }
+    }
+
+    private void CheckDeath()
+    {
+        if (_health <= 0)
+        {
+            StopCoroutine(ChangeHealth());
+            Destroy(gameObject);
+        }
+    }
+
+    public void Damage(float damage)
+    {
+        _health -= damage;
+        StartCoroutine(ChangeHealth());
+    }
+
+    public void Hill(float bonusHeatlh)
+    {
+        _health += bonusHeatlh;
+        StartCoroutine(ChangeHealth());
     }
 }
