@@ -1,71 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
+    public event UnityAction<float> HealthChanged;
+
     [SerializeField] private float _health;
-
-    public float HealthCurrent { get; private set; }
-
-    private float _speedChange = 5f;
-    private float _healthMax;
-    private bool _canWork = true;
 
     private void Start()
     {
-        HealthCurrent = _health;
-        _healthMax = _health;
+        HealthChanged?.Invoke(_health);
     }
 
-    private IEnumerator ChangeHealth()
+    public void ApplyDamage(float damage)
     {
-        if (_canWork)
-        {
-            _canWork = false;
-            CheckExcessHealth();
-            CheckDeath();
-
-            while (_health != HealthCurrent)
-            {
-                HealthCurrent = Mathf.MoveTowards(HealthCurrent, _health, _speedChange * Time.deltaTime);
-                yield return new WaitForFixedUpdate();
-            }
-
-            StopCoroutine(ChangeHealth());
-        }
-
-        _canWork = true;
-        yield return new WaitForFixedUpdate();
+        _health -= damage;
+        HealthChanged?.Invoke(_health);
+        CheckDeath();
     }
 
-    private void CheckExcessHealth()
+    public void ApplyHealths(float bonusHeatlh)
     {
-        if (_health >= _healthMax)
-        {
-            _health = _healthMax;
-            StopCoroutine(ChangeHealth());
-        }
+        _health += bonusHeatlh;
+        HealthChanged?.Invoke(_health);
     }
 
     private void CheckDeath()
     {
         if (_health <= 0)
         {
-            StopCoroutine(ChangeHealth());
             Destroy(gameObject);
         }
-    }
-
-    public void Damage(float damage)
-    {
-        _health -= damage;
-        StartCoroutine(ChangeHealth());
-    }
-
-    public void Hill(float bonusHeatlh)
-    {
-        _health += bonusHeatlh;
-        StartCoroutine(ChangeHealth());
     }
 }
