@@ -6,14 +6,13 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Fuze : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _effect;
+    [SerializeField] private float _chanceSeparation = 100;
     [SerializeField] private float _radius;
     [SerializeField] private float _forceExpload;
+    [SerializeField] private ParticleSystem _effect;
     [SerializeField] private Fuze _prefab;
 
-    private static float _chanceSeparation = 100;
-
-    private int _divisionThreshold = 50;
+    private float _divisionThreshold = 50;
     private int _indexSeparate = 2;
     private int _sizeDivision = 2;
 
