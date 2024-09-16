@@ -128,10 +128,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c462b79c5686a3e4d80fc1784b66e890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chanceSeparation: 100
   _effect: {fileID: 19800002, guid: 1ca16f2a31fb6a548ad8954bed1d321f, type: 3}
-  _radius: 5
-  _forceExpload: 10
   _prefab: {fileID: 8172583539201929208}
+  _radiusDefault: 5
+  _forceDefault: 20
+  _forceExplode: 0
+  _radiusExplode: 0
 --- !u!114 &8755291298996898994
 MonoBehaviour:
   m_ObjectHideFlags: 0
