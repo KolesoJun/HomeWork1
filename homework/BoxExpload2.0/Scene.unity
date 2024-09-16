@@ -867,6 +867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1476359797}
   - component: {fileID: 1476359796}
+  - component: {fileID: 1476359798}
   m_Layer: 0
   m_Name: PrefabsExloder
   m_TagString: Untagged
@@ -886,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a148c04063e2d4bbf1673d83dcec68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: -8591905654705680343, guid: eb8e0a1cce75c9541a587922d24451a5, type: 3}
+  _prefab: {fileID: 3471258437649053032, guid: eb8e0a1cce75c9541a587922d24451a5, type: 3}
 --- !u!4 &1476359797
 Transform:
   m_ObjectHideFlags: 0
@@ -906,6 +907,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476359798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476359795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93949c4cee228f041ab298e54d360934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
 --- !u!4 &1892967807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7917990822179605773, guid: eb8e0a1cce75c9541a587922d24451a5, type: 3}

@@ -6,7 +6,7 @@ public class ColorManager : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.GetComponent<MeshRenderer>().material.color = ChangeRandom();
+        GetComponent<MeshRenderer>().material.color = ChangeRandom();
     }
 
     private Color32 ChangeRandom()
