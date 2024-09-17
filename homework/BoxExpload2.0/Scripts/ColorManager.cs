@@ -11,8 +11,6 @@ public class ColorManager : MonoBehaviour
 
     private Color32 ChangeRandom()
     {
-        int randomMin = 0;
-        int randomMax = _colors.Length;
-        return _colors[Random.Range(randomMin, randomMax)];
+        return _colors[Random.Range(0,_colors.Length)];
     }
 }

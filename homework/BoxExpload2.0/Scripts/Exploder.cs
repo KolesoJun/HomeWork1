@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Exploder : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _effect;
-
-    public void Explode(Transform objectExplode, float radius, float force)
+    public void ExplodeForRadius(Transform objectExplode, float radius, float force)
     {
         Collider[] hits = Physics.OverlapSphere(objectExplode.position, radius);
 
@@ -16,8 +14,5 @@ public class Exploder : MonoBehaviour
                 hit.attachedRigidbody.AddForce((hit.transform.position - objectExplode.position) * forceCurrent, ForceMode.Impulse);
             }
         }
-
-        Instantiate(_effect, objectExplode.position, Quaternion.identity);
-        Destroy(objectExplode.gameObject);
     }
 }
