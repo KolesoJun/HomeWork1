@@ -34,12 +34,12 @@ public class Pooler : MonoBehaviour
             Create();
 
         brick.gameObject.SetActive(true);
-        brick.Init();
         return brick;
     }
 
     private void Release(Brick brick)
     {
+        brick.Init();
         brick.gameObject.SetActive(false);
     }
 
