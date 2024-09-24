@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Pooler : MonoBehaviour
@@ -8,6 +7,7 @@ public class Pooler : MonoBehaviour
     [SerializeField] private int _countObjects = 10;
 
     private List<Brick> _bricksPool;
+    private Stack<Brick> _bricksPoolActive;
 
     private void Awake()
     {
@@ -28,19 +28,20 @@ public class Pooler : MonoBehaviour
 
     public Brick Get()
     {
-        Brick brick = _bricksPool.FirstOrDefault(obj => obj.isActiveAndEnabled == false);
+        Brick brick = _bricksPoolActive.Pop();
 
         if (brick == null)
             Create();
 
         brick.gameObject.SetActive(true);
-        brick.Init();
         return brick;
     }
 
     private void Release(Brick brick)
     {
+        brick.Init();
         brick.gameObject.SetActive(false);
+        _bricksPoolActive.Push(brick);
     }
 
     private void Create()
@@ -48,10 +49,12 @@ public class Pooler : MonoBehaviour
         Brick brick = Instantiate(_prefab, transform);
         brick.gameObject.SetActive(false);
         _bricksPool.Add(brick);
+        _bricksPoolActive.Push(brick);
     }
 
     private void Init()
     {
+        _bricksPoolActive = new Stack<Brick>();
         _bricksPool = new List<Brick>();
 
         for (int i = 0; i < _countObjects; i++)

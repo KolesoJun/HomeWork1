@@ -12,7 +12,6 @@ public class Brick : MonoBehaviour
 
     private bool _isFirstEnter;
     private MeshRenderer _meshRenderer;
-    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -21,11 +20,14 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<PlatformDestroyer>(out _) && _isFirstEnter == false)
+        if (_isFirstEnter == false)
         {
-            _isFirstEnter = true;
-            _meshRenderer.material.color = ChangeColor();
-            Touch();
+            if (collision.gameObject.TryGetComponent<PlatformDestroyer>(out _))
+            {
+                _isFirstEnter = true;
+                _meshRenderer.material.color = ChangeColor();
+                StartCoroutine(CountdownLife());
+            }
         }
     }
 
@@ -33,14 +35,6 @@ public class Brick : MonoBehaviour
     {
         _meshRenderer.material.color = Color.white;
         _isFirstEnter = false;
-    }
-
-    private void Touch()
-    {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
-
-        _coroutine = StartCoroutine(CountdownLife());
     }
 
     private Color32 ChangeColor()
@@ -54,8 +48,7 @@ public class Brick : MonoBehaviour
     {
         float lifeTimeMin = 2f;
         float lifeTimeMax = 6f;
-        WaitForSeconds wait = new WaitForSeconds(Random.Range(lifeTimeMin, lifeTimeMax));
-        yield return wait;
-        Death?.Invoke(GetComponent<Brick>());
+        yield return new WaitForSeconds(Random.Range(lifeTimeMin, lifeTimeMax));
+        Death?.Invoke(this);
     }
 }

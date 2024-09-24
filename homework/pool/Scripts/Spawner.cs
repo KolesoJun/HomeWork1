@@ -27,7 +27,10 @@ public class Spawner : MonoBehaviour
         while (_canWork)
         {
             Brick brick = _pooler.Get();
-            brick.transform.position = _spawnPositions[Random.Range(0, _spawnPositions.Length)].position;
+
+            if(brick != null)
+                brick.transform.position = _spawnPositions[Random.Range(0, _spawnPositions.Length)].position;
+
             yield return wait;
         }
     }
