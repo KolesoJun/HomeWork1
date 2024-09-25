@@ -6,12 +6,12 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Brick : MonoBehaviour
 {
-    public event UnityAction<Brick> Death;
-
     [SerializeField] private Color32[] _color;
 
     private bool _isFirstEnter;
     private MeshRenderer _meshRenderer;
+
+    public event UnityAction<Brick> LeavingBorder;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class Brick : MonoBehaviour
     {
         if (_isFirstEnter == false)
         {
-            if (collision.gameObject.TryGetComponent<PlatformDestroyer>(out _))
+            if (collision.gameObject.TryGetComponent<BorderPlane>(out _))
             {
                 _isFirstEnter = true;
                 _meshRenderer.material.color = ChangeColor();
@@ -49,6 +49,6 @@ public class Brick : MonoBehaviour
         float lifeTimeMin = 2f;
         float lifeTimeMax = 6f;
         yield return new WaitForSeconds(Random.Range(lifeTimeMin, lifeTimeMax));
-        Death?.Invoke(this);
+        LeavingBorder?.Invoke(this);
     }
 }

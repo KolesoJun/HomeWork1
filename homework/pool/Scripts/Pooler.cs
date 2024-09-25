@@ -17,39 +17,43 @@ public class Pooler : MonoBehaviour
     private void OnEnable()
     {
         foreach (var brick in _bricksPool)
-            brick.Death += Release;
+            brick.LeavingBorder += Release;
     }
 
     private void OnDisable()
     {
         foreach (var brick in _bricksPool)
-            brick.Death -= Release;
+            brick.LeavingBorder -= Release;
     }
 
     public Brick Get()
     {
-        Brick brick = _bricksPoolActive.Pop();
-
-        if (brick == null)
-            Create();
-
-        brick.gameObject.SetActive(true);
-        return brick;
+        if (_bricksPoolActive.Count > 0)
+        {
+            Brick brick = _bricksPoolActive.Pop();
+            brick.gameObject.SetActive(true);
+            brick.Init();
+            return brick;
+        }
+        else
+        {
+           return Create();
+        }
     }
 
     private void Release(Brick brick)
     {
-        brick.Init();
         brick.gameObject.SetActive(false);
         _bricksPoolActive.Push(brick);
     }
 
-    private void Create()
+    private Brick Create()
     {
         Brick brick = Instantiate(_prefab, transform);
         brick.gameObject.SetActive(false);
         _bricksPool.Add(brick);
         _bricksPoolActive.Push(brick);
+        return brick;
     }
 
     private void Init()
