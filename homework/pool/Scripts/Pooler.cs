@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Spawner))]
 public class Pooler : MonoBehaviour
 {
     [SerializeField] private Brick _prefab;
@@ -8,22 +9,12 @@ public class Pooler : MonoBehaviour
 
     private List<Brick> _bricksPool;
     private Stack<Brick> _bricksPoolActive;
+    private Spawner _spawner;
 
     private void Awake()
     {
+        _spawner = GetComponent<Spawner>();
         Init();
-    }
-
-    private void OnEnable()
-    {
-        foreach (var brick in _bricksPool)
-            brick.LeavingBorder += Release;
-    }
-
-    private void OnDisable()
-    {
-        foreach (var brick in _bricksPool)
-            brick.LeavingBorder -= Release;
     }
 
     public Brick Get()
@@ -32,16 +23,14 @@ public class Pooler : MonoBehaviour
         {
             Brick brick = _bricksPoolActive.Pop();
             brick.gameObject.SetActive(true);
-            brick.Init();
+            brick.Init(this);
             return brick;
         }
-        else
-        {
-           return Create();
-        }
+
+        return null;
     }
 
-    private void Release(Brick brick)
+    public void Release(Brick brick)
     {
         brick.gameObject.SetActive(false);
         _bricksPoolActive.Push(brick);
@@ -49,7 +38,7 @@ public class Pooler : MonoBehaviour
 
     private Brick Create()
     {
-        Brick brick = Instantiate(_prefab, transform);
+        Brick brick = Instantiate(_prefab, _spawner.transform);
         brick.gameObject.SetActive(false);
         _bricksPool.Add(brick);
         _bricksPoolActive.Push(brick);

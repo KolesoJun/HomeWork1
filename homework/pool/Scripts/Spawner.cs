@@ -1,14 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Pooler))]
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Transform[] _spawnPositions;
+    [SerializeField] private Vector3 _spawnSectorMin;
+    [SerializeField] private Vector3 _spawnSectorMax;
     [SerializeField] private float _delay;
 
-    private bool _canWork = true;
     private Pooler _pooler;
+    private bool _canWork = true;
 
     private void Awake()
     {
@@ -28,10 +30,18 @@ public class Spawner : MonoBehaviour
         {
             Brick brick = _pooler.Get();
 
-            if(brick != null)
-                brick.transform.position = _spawnPositions[Random.Range(0, _spawnPositions.Length)].position;
-
+            if (brick != null)
+            {
+                brick.transform.position = new Vector3(Random.Range(_spawnSectorMin.x, _spawnSectorMax.x),
+                    Random.Range(_spawnSectorMin.y, _spawnSectorMax.y), Random.Range(_spawnSectorMin.z, _spawnSectorMax.z));
+            }
+                      
             yield return wait;
         }
+    }
+
+    private void sbor()
+    {
+
     }
 }

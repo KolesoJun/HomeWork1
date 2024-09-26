@@ -2,20 +2,20 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(BrickColorManager))]
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class Brick : MonoBehaviour
 {
-    [SerializeField] private Color32[] _color;
-
     private bool _isFirstEnter;
     private MeshRenderer _meshRenderer;
-
-    public event UnityAction<Brick> LeavingBorder;
+    private BrickColorManager _colorManager;
+    private Pooler _pooler;
 
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
+        _colorManager = GetComponent<BrickColorManager>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,30 +25,25 @@ public class Brick : MonoBehaviour
             if (collision.gameObject.TryGetComponent<BorderPlane>(out _))
             {
                 _isFirstEnter = true;
-                _meshRenderer.material.color = ChangeColor();
+                _meshRenderer.material.color = _colorManager.ChangeColor();
                 StartCoroutine(CountdownLife());
             }
         }
     }
 
-    public void Init()
+    public void Init(Pooler pooler)
     {
+        _pooler = pooler;
         _meshRenderer.material.color = Color.white;
         _isFirstEnter = false;
-    }
-
-    private Color32 ChangeColor()
-    {
-        int colorRandomMin = 0;
-        int colorRandomMax = _color.Length;
-        return _color[Random.Range(colorRandomMin, colorRandomMax)];
     }
 
     private IEnumerator CountdownLife()
     {
         float lifeTimeMin = 2f;
-        float lifeTimeMax = 6f;
-        yield return new WaitForSeconds(Random.Range(lifeTimeMin, lifeTimeMax));
-        LeavingBorder?.Invoke(this);
+        float lifeTimeMax = 5f;
+        float erorRandom = 1f;
+        yield return new WaitForSeconds(Random.Range(lifeTimeMin, lifeTimeMax + erorRandom));
+        _pooler.Release(this);
     }
 }
