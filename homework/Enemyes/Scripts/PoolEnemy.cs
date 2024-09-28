@@ -6,7 +6,6 @@ public class PoolEnemy : MonoBehaviour
     [SerializeField] private Enemy _prefab;
     [SerializeField] private int _countEnemyes = 10;
 
-    private List<Enemy> _enemies;
     private Stack<Enemy> _enemiesActive;
 
     private void Awake()
@@ -14,13 +13,13 @@ public class PoolEnemy : MonoBehaviour
         Init();
     }
 
-    public Enemy Get(Transform spawn)
+    public Enemy Get()
     {
         if(_enemiesActive.Count > 0)
         {
             Enemy enemy = _enemiesActive.Pop();
             enemy.gameObject.SetActive(true);
-            enemy.Init(this, spawn.localPosition, spawn.localEulerAngles);
+            return enemy;
         }
         
         return null;
@@ -35,7 +34,6 @@ public class PoolEnemy : MonoBehaviour
     private void Init()
     {
         _enemiesActive = new Stack<Enemy>();
-        _enemies = new List<Enemy>();
 
         for (int i = 0; i < _countEnemyes; i++)
             Create();
@@ -45,7 +43,6 @@ public class PoolEnemy : MonoBehaviour
     {
         Enemy enemy = Instantiate(_prefab, transform);
         enemy.gameObject.SetActive(false);
-        _enemies.Add(enemy);
         _enemiesActive.Push(enemy);
     }
 }

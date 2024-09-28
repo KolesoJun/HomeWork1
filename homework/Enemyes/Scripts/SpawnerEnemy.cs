@@ -8,8 +8,15 @@ public class SpawnerEnemy : MonoBehaviour
     [SerializeField] private float _delay;
     [SerializeField] private Transform[] _pointsSpawn;
 
+    private List<Enemy> _enemiesActive = new List<Enemy>();
     private bool _isWork = true;
     private Coroutine _coroutine;
+
+    private void OnDisable()
+    {
+        foreach (var enemie in _enemiesActive)
+                enemie.EnemyBorderLeaved -= _poolEnemy.Release;
+    }
 
     private void Start()
     {
@@ -26,13 +33,21 @@ public class SpawnerEnemy : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(_delay);
+        WaitForSeconds wait = new WaitForSeconds(_delay);
 
         while (_isWork)
         {
             Transform point = _pointsSpawn[Random.Range(0, _pointsSpawn.Length)];
-            _poolEnemy.Get(point);
-            yield return new WaitForSeconds(_delay);
+            Enemy enemy = _poolEnemy.Get();
+
+            if (enemy != null)
+            {
+                enemy.Init(point.localPosition, point.localEulerAngles);
+                _enemiesActive.Add(enemy);
+                enemy.EnemyBorderLeaved += _poolEnemy.Release;
+            }
+
+            yield return wait;
         }
     }
 }
