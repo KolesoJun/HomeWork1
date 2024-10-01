@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PoolEnemy))]
 public class SpawnerEnemy : MonoBehaviour
 {
-    [SerializeField] private PoolEnemy _poolEnemy;
+    [SerializeField] private Target _target;
     [SerializeField] private float _delay;
-    [SerializeField] private Transform[] _pointsSpawn;
 
     private List<Enemy> _enemiesActive = new List<Enemy>();
     private bool _isWork = true;
     private Coroutine _coroutine;
+    private PoolEnemy _poolEnemy;
+
+    private void Awake()
+    {
+        _poolEnemy = GetComponent<PoolEnemy>();
+    }
 
     private void OnDisable()
     {
@@ -37,12 +43,11 @@ public class SpawnerEnemy : MonoBehaviour
 
         while (_isWork)
         {
-            Transform point = _pointsSpawn[Random.Range(0, _pointsSpawn.Length)];
             Enemy enemy = _poolEnemy.Get();
 
             if (enemy != null)
             {
-                enemy.Init(point.localPosition, point.localEulerAngles);
+                enemy.Init(transform.localPosition, _target);
                 _enemiesActive.Add(enemy);
                 enemy.EnemyBorderLeaved += _poolEnemy.Release;
             }

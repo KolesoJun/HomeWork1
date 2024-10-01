@@ -5,29 +5,27 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    private bool _canMove;
+    private Target _target;
 
     public event Action<Enemy> EnemyBorderLeaved;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Border>())
+        if (collision.gameObject.GetComponent<Target>())
         {
-            _canMove = false;
             EnemyBorderLeaved?.Invoke(this);
         }
     }
 
     private void Update()
     {
-        if(_canMove)
-            transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        if (_target != null)
+            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed* Time.deltaTime);
     }
 
-    public void Init(Vector3 startPosition, Vector3 rotate)
+    public void Init(Vector3 startPosition, Target target)
     {
         transform.position = startPosition;
-        transform.rotation = Quaternion.Euler(rotate);
-        _canMove = true;
+        _target = target;
     }
 }
