@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class BulletSpawner: MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Bullet _prefab;
     [SerializeField] private Transform _target;
     [SerializeField] private float _timeWaitShooting;
     [SerializeField] private float _force;
 
     private void Start()
     {
-        if (_prefab.TryGetComponent<Rigidbody>(out _) == false)
-            _prefab.AddComponent<Rigidbody>();
-
         StartCoroutine(Shoot());
     }
 
