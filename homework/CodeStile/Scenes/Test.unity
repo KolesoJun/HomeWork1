@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79dcc400c7887749b1f4b241456eb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 3365885548717935965, guid: 5a355753154a36748a227b3579a02190, type: 3}
+  _prefab: {fileID: -5007887191130767200, guid: 5a355753154a36748a227b3579a02190, type: 3}
   _target: {fileID: 1006390755}
   _timeWaitShooting: 1
   _force: 30

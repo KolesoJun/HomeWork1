@@ -23,7 +23,7 @@ public class BulletSpawner: MonoBehaviour
             var direction = (_target.position - transform.position).normalized;
             var bullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
             bullet.transform.up = direction;
-            bullet.GetComponent<Rigidbody>().velocity = direction * _force;
+            bullet.Move(direction, _force);
             yield return wait;
         }
     }
