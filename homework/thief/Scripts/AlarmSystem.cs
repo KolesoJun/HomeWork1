@@ -1,20 +1,24 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(BoxCollider))]
 public class AlarmSystem : MonoBehaviour
 {
     [SerializeField] private AudioClip _clip;
+    [SerializeField] private House _house;
 
     private float _step = 0.5f;
     private AudioSource _audioSource;
     private float _volumeTarget;
     private float _volumeMin = 0f;
-    private bool _isInside;
-
+    
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        _house.LoggedThief += AdjustVolume;
     }
 
     private void Start()
@@ -25,31 +29,22 @@ public class AlarmSystem : MonoBehaviour
 
     private void Update()
     {
-        AdjustVolume();
+        _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _volumeTarget, _step * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDisable()
     {
-        if (other.TryGetComponent<Thief>(out _))
-        {
-            _isInside = true;
+        _house.LoggedThief -= AdjustVolume;
+    }
+
+    private void AdjustVolume(bool isInside)
+    {
+        if (_audioSource.isPlaying == false)
             _audioSource.Play();
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent<Thief>(out _))
-            _isInside = false;
-    }
-
-    private void AdjustVolume()
-    {
-        if (_isInside)
+        if (isInside)
             _volumeTarget = 1f;
         else
             _volumeTarget = _volumeMin;
-
-        _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _volumeTarget, _step * Time.deltaTime);
     }
 }
