@@ -447,10 +447,9 @@ GameObject:
   m_Component:
   - component: {fileID: 311773656}
   - component: {fileID: 311773658}
-  - component: {fileID: 311773657}
   - component: {fileID: 311773659}
   m_Layer: 0
-  m_Name: AlarmSystem
+  m_Name: AlarmSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,27 +470,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1622127761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &311773657
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311773655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.5262618, y: 3.596434, z: 3.210182}
-  m_Center: {x: -0.49180675, y: 1.5694051, z: 0.15874875}
 --- !u!114 &311773658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clip: {fileID: 8300000, guid: b3285350b6869b1459bdda6b5ee91cb4, type: 3}
+  _house: {fileID: 1622127762}
 --- !u!82 &311773659
 AudioSource:
   m_ObjectHideFlags: 0
@@ -901,6 +880,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1622127761}
+  - component: {fileID: 1622127763}
+  - component: {fileID: 1622127762}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -932,6 +913,39 @@ Transform:
   - {fileID: 311773656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1622127762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622127760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04d744046d1aa74281b6ada0042e533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1622127763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622127760}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.7896805, y: 3.6597652, z: 3.3911898}
+  m_Center: {x: -6.8968935, y: 1.5755382, z: 1.3561915}
 --- !u!1 &1631659163
 GameObject:
   m_ObjectHideFlags: 0

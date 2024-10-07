@@ -4,25 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class House : MonoBehaviour
 {
-    private bool _isInside;
-
-    public event Action<bool> LoggedThief;
+    public event Action EnteredThief;
+    public event Action OutThief;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-        {
-            _isInside = true;
-            LoggedThief?.Invoke(_isInside);
-        }
+            EnteredThief?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-        {
-            _isInside = false;
-            LoggedThief?.Invoke(_isInside);
-        }
+            OutThief?.Invoke();
     }
 }
